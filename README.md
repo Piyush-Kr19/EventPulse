@@ -6,7 +6,6 @@
 ### Be the main character at every event.
 
 A modern, responsive event discovery and booking platform. Browse curated conferences, festivals and workshops across India, then grab a digital pass in seconds.
-
 <br>
 
 [![Live Demo](https://img.shields.io/badge/Live_Demo-myeventpulse.netlify.app-C6F432?style=for-the-badge&logo=netlify&logoColor=black)](https://myeventpulse.netlify.app)
@@ -233,49 +232,6 @@ It also works on GitHub Pages, Vercel, Cloudflare Pages or any static host.
 
 ---
 
-## 💡 Usage
-
-### As a visitor
-1. **Browse:** scroll the Featured Spotlight or jump to *Discover Events*.
-2. **Filter:** type in the search box, pick a category pill, and narrow by format or price.
-3. **Explore:** click an event card to read the agenda, highlights and speakers.
-4. **Book:** choose *Register*, select a ticket tier and quantity, and fill in your details.
-5. **Get your pass:** receive a digital ticket with barcode and QR code. Print it or add the event to your calendar.
-6. **Manage:** open **My Passes** in the header to review or cancel bookings.
-
-### Adding or editing events
-
-All content lives in [`js/events-data.js`](js/events-data.js). Add an object to the `INITIAL_EVENTS` array and it appears on the site automatically:
-
-```javascript
-{
-  id: 'ev-my-new-event',
-  title: 'My New Event',
-  category: 'tech',                  // tech | music | business | design | workshop | health
-  categoryLabel: 'Technology & AI',
-  tagline: 'One-line hook shown on the card.',
-  date: 'Feb 14, 2027',
-  isoDate: '2027-02-14T10:00:00',    // drives the countdown and calendar file
-  time: '10:00 AM - 05:00 PM IST',
-  venue: 'Full venue address',
-  locationShort: 'Pune, MH',
-  format: 'In-Person',               // In-Person | Virtual | Hybrid
-  price: 999,                        // 0 for free events
-  priceDisplay: '\u20B9999',
-  featured: false,                   // true to show in the Featured Spotlight
-  image: 'https://…',
-  description: `Paragraph one.\n\nParagraph two.`,
-  highlights: ['Highlight one', 'Highlight two'],
-  agenda: [{ time: '10:00 AM', title: 'Opening Keynote', speaker: 'Jane Doe' }],
-  speakers: [{ name: 'Jane Doe', role: 'CTO', company: 'Acme', avatar: 'https://…' }],
-  totalSeats: 200,
-  registeredSeats: 120,
-  ticketTiers: [
-    { id: 'standard', name: 'General Admission', price: 999, desc: 'Full day access' }
-  ]
-}
-```
-
 ### Theming
 
 Colors are defined as CSS custom properties at the top of [`css/styles.css`](css/styles.css), with separate token sets for light mode (`:root`) and dark mode (`[data-theme="dark"]`). Change `--primary` and the related variables to re-skin the whole site.
@@ -339,40 +295,3 @@ npx serve .
 
 ---
 
-## 🛠️ Git & GitHub Submission Guide
-
-Follow these steps to submit this repository to your GitHub account:
-
-### 1. Stage and Commit Your Local Files
-```bash
-git add .
-git commit -m "feat: initial commit - responsive event management website with validation and local storage"
-```
-
-### 2. Create a New Repository on GitHub
-1. Log in to [GitHub](https://github.com).
-2. Click **New Repository** (or visit [https://github.com/new](https://github.com/new)).
-3. Name your repository (e.g., `eventpulse-management-website`).
-4. Keep it **Public** and do not initialize with README (since we already have one).
-5. Click **Create repository**.
-
-### 3. Link Remote and Push
-Copy your repository URL from GitHub and run:
-```bash
-git remote add origin https://github.com/<YOUR-USERNAME>/<YOUR-REPO-NAME>.git
-git branch -M main
-git push -u origin main
-```
-
----
-
-## 📱 Responsive Breakpoints Tested
-- **Mobile (< 768px)**: Optimized single-column grid, compact drawer modals, touch-friendly touch targets, mobile hamburger menu.
-- **Tablet (768px - 1024px)**: 2-column adaptive event grid, adjusted hero typography.
-- **Desktop (> 1024px)**: Multi-column grid, expanded spotlight banner, sticky glassmorphic navigation.
-
----
-
-## 📜 License
-This project is open-source and available under the [MIT License](LICENSE).
->>>>>>> dc19d37d99d300cf8584a9f3fe0e5a97c1e4f4fc
