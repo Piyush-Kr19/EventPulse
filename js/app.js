@@ -17,7 +17,7 @@ document.addEventListener('DOMContentLoaded', () => {
     activeModalEvent: null,
     favorites: JSON.parse(localStorage.getItem('eventpulse_favorites') || '[]'),
     registrations: JSON.parse(localStorage.getItem('eventpulse_registrations') || '[]'),
-    theme: localStorage.getItem('eventpulse_theme') || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'),
+    theme: localStorage.getItem('eventpulse_theme') || 'dark',
     countdownIntervals: {}
   };
 
@@ -61,6 +61,9 @@ document.addEventListener('DOMContentLoaded', () => {
   const btnQtyMinus = document.getElementById('qty-minus');
   const btnQtyPlus = document.getElementById('qty-plus');
   const totalAmountDisplay = document.getElementById('total-amount-display');
+
+  // Indian Rupee formatting (\u20B9 = rupee sign), e.g. 149999 -> 1,49,999
+  const formatPrice = (n) => n === 0 ? 'Free' : '\u20B9' + Number(n).toLocaleString('en-IN');
 
   /* ==========================================================================
      1. Theme Management (Dark / Light Mode)
@@ -305,7 +308,7 @@ document.addEventListener('DOMContentLoaded', () => {
             <div class="event-card-footer">
               <div class="event-price-tag">
                 <span class="price-sub">Starting at</span>
-                <span class="price-unit">${event.price === 0 ? 'Free' : '$' + event.price}</span>
+                <span class="price-unit">${formatPrice(event.price)}</span>
               </div>
               <div class="card-actions">
                 <button type="button" class="btn btn-secondary btn-sm btn-view-details" data-event-id="${event.id}">Details</button>
@@ -403,7 +406,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const secsEl = container.querySelector('.cd-secs');
 
     function update() {
-      const targetTime = new Date(targetIsoDate).getTime();
+      const targetTime = new Date(targetIsoDate + '+05:30').getTime(); // IST
       const now = new Date().getTime();
       const diff = targetTime - now;
 
@@ -496,7 +499,7 @@ document.addEventListener('DOMContentLoaded', () => {
           <div class="featured-footer">
             <div class="featured-price-group">
               <span class="price-sub">All-inclusive Pass</span>
-              <span class="price-main">${featured.price === 0 ? 'Free' : '$' + featured.price}</span>
+              <span class="price-main">${formatPrice(featured.price)}</span>
             </div>
             <div class="featured-buttons">
               <button type="button" class="btn btn-secondary btn-view-details" data-event-id="${featured.id}">View Details</button>
@@ -690,7 +693,7 @@ document.addEventListener('DOMContentLoaded', () => {
       </div>
 
       <button type="button" class="btn btn-primary" id="btn-modal-proceed-reg">
-        <span>Register Now (${event.price === 0 ? 'Free' : '$' + event.price})</span>
+        <span>Register Now (${formatPrice(event.price)})</span>
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
           <line x1="5" y1="12" x2="19" y2="12"></line>
           <polyline points="12 5 19 12 12 19"></polyline>
@@ -732,7 +735,7 @@ document.addEventListener('DOMContentLoaded', () => {
      9. Add to Calendar (.ics File Generator)
      ========================================================================== */
   function downloadICalFile(event) {
-    const startDate = new Date(event.isoDate);
+    const startDate = new Date(event.isoDate + '+05:30'); // IST
     const endDate = new Date(startDate.getTime() + 4 * 60 * 60 * 1000); // 4 hours duration
 
     const formatDate = (date) => {
@@ -818,7 +821,7 @@ document.addEventListener('DOMContentLoaded', () => {
         <input type="radio" name="ticket-tier" value="${tier.id}" ${idx === 0 ? 'checked' : ''}>
         <div class="tier-header">
           <span class="tier-name">${tier.name}</span>
-          <span class="tier-price">${tier.price === 0 ? 'Free' : '$' + tier.price}</span>
+          <span class="tier-price">${formatPrice(tier.price)}</span>
         </div>
         <p class="tier-desc">${tier.desc}</p>
       </label>
@@ -859,7 +862,7 @@ document.addEventListener('DOMContentLoaded', () => {
   function updatePriceCalculation() {
     if (!selectedTier) return;
     const total = selectedTier.price * ticketCount;
-    totalAmountDisplay.textContent = total === 0 ? 'Free' : `$${total}`;
+    totalAmountDisplay.textContent = formatPrice(total);
   }
 
   // Form Field Validation Rules
@@ -889,7 +892,7 @@ document.addEventListener('DOMContentLoaded', () => {
       validate: (val) => {
         if (!val || val.trim().length === 0) return 'Phone number is required';
         const cleanPhone = val.replace(/[\s\-\(\)]/g, '');
-        if (!/^\+?[0-9]{7,15}$/.test(cleanPhone)) return 'Please enter a valid phone number (at least 7 digits)';
+        if (!/^(\+91|91|0)?[6-9][0-9]{9}$/.test(cleanPhone)) return 'Enter a valid 10-digit Indian mobile number (e.g. +91 98765 43210)';
         return true;
       }
     },
