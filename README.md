@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 <div align="center">
 
 # ⚡ EventPulse
@@ -98,7 +97,7 @@ The platform ships with eight sample events across India:
 | **Imagery** | [Unsplash](https://unsplash.com) photography |
 | **Persistence** | Browser `localStorage` |
 | **Hosting** | [Netlify](https://www.netlify.com) |
-=======
+
 # 🎟️ EventPulse - Modern Responsive Event Management Platform
 
 A modern, responsive, and interactive event management web platform designed to discover upcoming global events, explore detailed agendas and speakers, and seamlessly register for events with real-time client-side form validation and instant digital pass generation.
@@ -165,13 +164,11 @@ Built with **HTML5**, **CSS3 (Custom Properties & Glassmorphism)**, and **Vanill
 - **Dark & Light Mode Toggle**: Seamless theme transition using CSS custom variables with persistent `localStorage` preference and automatic fallback to system color scheme.
 - **Live Event Countdown Timers**: Real-time ticking timers on both the featured spotlight and individual modal views.
 - **Micro-Animations & Transitions**: Smooth card hover lifts, modal animations, pulsating indicators, and floating toast notifications.
->>>>>>> dc19d37d99d300cf8584a9f3fe0e5a97c1e4f4fc
 
 ---
 
 ## 📁 Project Structure
 
-<<<<<<< HEAD
 ```
 eventpulse/
 ├── index.html            # Page markup, modals and layout
@@ -181,9 +178,6 @@ eventpulse/
     ├── events-data.js    # Event dataset and category definitions
     └── app.js            # Application logic (filters, modals, booking, storage)
 ```
-
-> `index.html` loads `css/styles.css`, `js/events-data.js` and `js/app.js`, so keep the files in this folder layout.
-
 ---
 
 ## 🚀 Getting Started
@@ -217,35 +211,6 @@ python -m http.server 8000
 # Option C: Node dev server
 npx serve .
 ```
-
-### Deploy your own copy
-
-**Netlify (drag and drop):** go to [app.netlify.com/drop](https://app.netlify.com/drop) and drop the project folder in.
-
-**Netlify (CLI):**
-```bash
-npm install -g netlify-cli
-netlify deploy --prod --dir=.
-```
-
-It also works on GitHub Pages, Vercel, Cloudflare Pages or any static host.
-
----
-
-### Theming
-
-Colors are defined as CSS custom properties at the top of [`css/styles.css`](css/styles.css), with separate token sets for light mode (`:root`) and dark mode (`[data-theme="dark"]`). Change `--primary` and the related variables to re-skin the whole site.
-
-### Data stored in your browser
-
-| `localStorage` key | Purpose |
-|---|---|
-| `eventpulse_theme` | Selected light or dark theme |
-| `eventpulse_favorites` | Bookmarked event IDs |
-| `eventpulse_registrations` | Booked passes (shown in *My Passes*) |
-
-To reset the app, clear the site's data in your browser's developer tools.
-
 ---
 
 <div align="center">
@@ -253,45 +218,3 @@ To reset the app, clear the site's data in your browser's developer tools.
 **If you like this project, give it a ⭐ on GitHub!**
 
 Made with ❤️ and a lot of ☕ · [myeventpulse.netlify.app](https://myeventpulse.netlify.app)
-
-</div>
-=======
-```text
-eventpulse-website/
-├── index.html            # Main semantic HTML5 markup
-├── css/
-│   └── styles.css        # CSS3 variables, dark/light themes, animations & responsive queries
-├── js/
-│   ├── events-data.js    # Curated events dataset with speakers, agenda & ticket tiers
-│   └── app.js            # App logic (theme, search, filters, validation, countdown, localStorage)
-├── .gitignore            # Git exclusion rules
-└── README.md             # Documentation and GitHub submission guide
-```
-
----
-
-## 🚀 How to Run the Website Locally
-
-You can run this project with zero dependencies using any modern browser:
-
-### Option 1: Direct Browser Launch
-Simply double-click `index.html` or right-click and choose **Open with > Google Chrome / Microsoft Edge / Firefox / Safari**.
-
-### Option 2: Using VS Code Live Server
-1. Open the `eventpulse-website` folder in VS Code.
-2. If installed, right-click `index.html` and click **"Open with Live Server"**.
-
-### Option 3: Using Python HTTP Server
-Run the following command inside the `eventpulse-website` folder:
-```bash
-python -m http.server 8000
-```
-Then visit [http://localhost:8000](http://localhost:8000) in your web browser.
-
-### Option 4: Using Node.js
-```bash
-npx serve .
-```
-
----
-
