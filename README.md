@@ -15,7 +15,7 @@ A modern, responsive event discovery and booking platform. Browse curated confer
 ![Netlify](https://img.shields.io/badge/Deployed_on-Netlify-00C7B7?style=flat-square&logo=netlify&logoColor=white)
 ![No Dependencies](https://img.shields.io/badge/dependencies-none-success?style=flat-square)
 
-**[🌐 View Live Site](https://myeventpulse.netlify.app)** · **[✨ Features](#-features)** · **[🚀 Getting Started](#-getting-started)** · **[📬 Contact](#-contact)**
+**[🌐 View Live Site](https://myeventpulse.netlify.app)** · **[✨ Features](#-features)** · **[🚀 Getting Started](#-getting-started)**
 
 </div>
 
